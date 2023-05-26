@@ -4,6 +4,7 @@ if(process.env.NODE_ENV !== 'production'){
 
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const app = express();
 const expressLayout = require('express-ejs-layouts');
 const indexRoutes = require('./routes/index');
@@ -12,6 +13,7 @@ app.set('view engine', 'ejs');
 app.set("views", __dirname + '/views');
 app.set("layout", 'layouts/layout');
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded());
 app.use(expressLayout);
 app.use("/", indexRoutes);
 app.use("/authors", authorsRoute);
